@@ -1,17 +1,23 @@
 import express from 'express'
 import mongoose from 'mongoose'
-import { Token } from '../model/tokens.model.js'
 import cors from 'cors'
+import { Token } from '../model/tokens.model.js'
+import {Starbucks} from '../model/starbucks.model.js'
+import { User } from '../model/user.model.js'
 import { getToken, checkValidationPhone, sendTokenToSMS } from './token.js'
 import {scrap} from './scrap.js'
-import { User } from '../model/user.model.js'
 import {checkValidationEmail, getWelcomeTemplate, sendWelcomeTemplateToEmail} from './email.js'
-import {Starbucks} from '../model/starbucks.model.js'
+import {options} from '../swagger/config.js'
+import swaggerUi from 'swagger-ui-express'
+import swaggerJsdoc from 'swagger-jsdoc'
 
 const app = express()
 const port = 3000
-
 app.use(express.json())
+
+const openapiSpecification = swaggerJsdoc(options)
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(openapiSpecification))
+
 app.use(cors())
 
 app.get('/', (req, res) => {
