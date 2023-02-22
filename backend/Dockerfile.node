@@ -1,0 +1,10 @@
+FROM node:14
+
+WORKDIR /portfolio01/backend
+COPY ./package.json /portfolio01/backend
+COPY ./yarn.lock /portfolio01/backend
+RUN yarn install
+
+COPY . /portfolio01/backend
+
+CMD yarn dev
