@@ -2,7 +2,7 @@ export const options = {
     definition: {
       openapi: '3.0.0',
       info: {
-        title: 'portfolio day04',
+        title: 'node-mini-project01',
         version: '1.0.0',
       },
     },

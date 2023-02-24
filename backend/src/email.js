@@ -2,7 +2,12 @@ import {getToday} from "./utils.js"
 import nodemailer from "nodemailer"
 import "dotenv/config"
 
-export function checkValidationEmail(email) {
+/**
+ * 이메일 정규표현식 체크 함수
+ * @param {string} email 
+ * @returns boolean
+ */
+function checkValidationEmail(email) {
     let regex = new RegExp("([!#-'*+/-9=?A-Z^-~-]+(\.[!#-'*+/-9=?A-Z^-~-]+)*|\"\(\[\]!#-[^-~ \t]|(\\[\t -~]))+\")@([!#-'*+/-9=?A-Z^-~-]+(\.[!#-'*+/-9=?A-Z^-~-]+)*|\[[\t -Z^-~]*])");
     if(regex.test(email)) {
         console.log("정상적인 이메일 입니다.")
@@ -13,7 +18,12 @@ export function checkValidationEmail(email) {
     }
 }
 
-export function getWelcomeTemplate({email, name, prefer, phone}) {
+/**
+ * 
+ * @param {*} object 
+ * @returns 가입 축하 템플릿
+ */
+function getWelcomeTemplate({email, name, prefer, phone}) {
 
     const result = `
     <html>
@@ -34,7 +44,12 @@ export function getWelcomeTemplate({email, name, prefer, phone}) {
     return result;
 }
 
-export async function sendWelcomeTemplateToEmail(email, template) {
+/**
+ * nodemailer를 이용하여 메일을 전송하는 함수
+ * @param {string} email 
+ * @param {string} template 
+ */
+async function sendWelcomeTemplateToEmail(email, template) {
     const EMAIL_USER = process.env.EMAIL_USER
     console.log(EMAIL_USER)
     const EMAIL_PASS = process.env.EMAIL_PASS
@@ -60,3 +75,5 @@ export async function sendWelcomeTemplateToEmail(email, template) {
       console.log("Message sent: %s", info);
 
 }
+
+export {checkValidationEmail, getWelcomeTemplate, sendWelcomeTemplateToEmail}

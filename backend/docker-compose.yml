@@ -12,5 +12,6 @@ services:
       dockerfile: Dockerfile.node
     volumes:
       - ./src/:/portfolio01/backend/src
+      - ./swagger/:/portfolio01/backend/swagger
     ports:
       - 3000:3000

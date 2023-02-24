@@ -2,12 +2,12 @@ import express from 'express'
 import mongoose from 'mongoose'
 import cors from 'cors'
 import { Token } from '../model/tokens.model.js'
-import {Starbucks} from '../model/starbucks.model.js'
+import { Starbucks } from '../model/starbucks.model.js'
 import { User } from '../model/user.model.js'
 import { getToken, checkValidationPhone, sendTokenToSMS } from './token.js'
-import {scrap} from './scrap.js'
-import {checkValidationEmail, getWelcomeTemplate, sendWelcomeTemplateToEmail} from './email.js'
-import {options} from '../swagger/config.js'
+import { scrap } from './scrap.js'
+import { checkValidationEmail, getWelcomeTemplate, sendWelcomeTemplateToEmail } from './email.js'
+import { options } from '../swagger/config.js'
 import swaggerUi from 'swagger-ui-express'
 import swaggerJsdoc from 'swagger-jsdoc'
 
@@ -23,6 +23,7 @@ app.use(cors())
 app.get('/', (req, res) => {
   res.send('Hello World!')
 })
+
 
 app.get('/starbucks', async (req, res) => {
   const menu = await Starbucks.find()
@@ -100,7 +101,7 @@ app.patch("/tokens/phone", async (req, res) => {
     res.send(false)
   }
   else {
-    await Token.updateOne({ phone: req.body.phone, isAuth: true })
+    await Token.updateOne({ phone: req.body.phone }, { isAuth: true })
     res.send(true)
   }
 

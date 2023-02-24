@@ -1,3 +1,7 @@
+/**
+ * 
+ * @returns 'yyyy/mm/dd'
+ */
 export function getToday() {
     const dt = new Date();
     const yyyy = dt.getFullYear();

@@ -1,6 +1,11 @@
 import coolsms from 'coolsms-node-sdk'
 import "dotenv/config"
 
+/**
+ * 입력한 자릿수만큼의 랜덤토큰 생성 및 반환 함수
+ * @param {number} count 
+ * @returns string
+ */
 function getToken(count) {
     if(count === undefined) {
         console.log("error!!! 갯수를 제대로 입력하세요");
@@ -18,6 +23,11 @@ function getToken(count) {
     return result;
 }
 
+/**
+ * 핸드폰번호 정규표현식 체크함수
+ * @param {string} phone 
+ * @returns boolean
+ */
 function checkValidationPhone(phone) {
     let regPhone= /^01([0|1|6|7|8|9])-?([0-9]{3,4})-?([0-9]{4})$/;
 
@@ -29,6 +39,11 @@ function checkValidationPhone(phone) {
     }
 }
 
+/**
+ * coolsms를 이용하여 실제 문자를 보내는 함수
+ * @param {string} phone 
+ * @param {string} token 
+ */
 function sendTokenToSMS(phone, token) {
     // console.log(`[${phone}] 번호로 인증번호 (${token})을 전송함..`);
     
